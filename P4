@@ -1,0 +1,25 @@
+PROGRAM 4
+import pandas as pd
+data = pd.DataFrame({
+ "Sky": ["Sunny", "Sunny", "Rainy", "Sunny"],
+ "AirTemp": ["Warm", "Warm", "Cold", "Warm"],
+ "Humidity": ["Normal", "High", "High", "High"],
+ "Wind": ["Strong", "Strong", "Strong", "Strong"],
+ "Water": ["Warm", "Warm", "Warm", "Cool"],
+ "Forecast": ["Same", "Same", "Change", "Same"],
+ "EnjoySport": ["Yes", "Yes", "No", "Yes"]
+})
+print(data)
+positiveData = data[data["EnjoySport"] == "Yes"].drop(columns="EnjoySport")
+def findS(data):
+ hypo = [0] * len(data.columns)
+ for i in range(len(data)):
+ for j in range(len(data.columns)):
+ value = data.iloc[i, j]
+ if hypo[j] == 0:
+ hypo[j] = value
+ elif hypo[j] != value:
+ hypo[j] = "?"
+ return hypo
+finds = findS(positiveData)
+print("Final Hypothesis:", finds)
