@@ -1,0 +1,6 @@
+from sklearn.datasets import load_breast_cancer
+cancer = load_breast_cancer()
+from sklearn.cluster import KMeans
+predict = KMeans(n_clusters=2).fit_predict(cancer.data)
+import matplotlib.pyplot as plt
+plt.scatter(cancer.data[:,0],cancer.data[:,1],c=predict)
