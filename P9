@@ -1,0 +1,24 @@
+from sklearn.datasets import fetch_olivetti_faces
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+import matplotlib.pyplot as
+# Load dataset
+faces = fetch_olivetti_faces()
+# Split data
+xtrain, xtest, ytrain, ytest, imgtrain, imgtest = train_test_split(
+ faces.data,
+faces.target,
+ faces.images,
+ test_size=0.2,
+ random_state=42)
+# Train model
+prediction = GaussianNB().fit(xtrain, ytrain).predict(xtest)
+# Display results
+plt.figure(figsize=(20, 15))
+for i in range(10):
+ plt.subplot(5, 5, i + 1)
+ plt.imshow(imgtest[i], cmap='gray')
+ plt.title(f"Predicted: {prediction[i]}\nOriginal: {ytest[i]}")
+ plt.axis('off')
+plt.tight_layout()
+plt.show()
