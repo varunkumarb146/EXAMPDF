@@ -1,0 +1,13 @@
+PROGRAM 3:-
+from sklearn.datasets import load_iris
+iris = load_iris()
+data = iris.data
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+scaler = StandardScaler().fit_transform(data)
+pc = PCA(n_components=2).fit_transform(scaler)
+import pandas as pd
+df = pd.DataFrame(pc,columns=["pc1","pc2"])
+df["Target"] = iris.target
+import seaborn as sns
+sns.scatterplot(x="pc1",y="pc2", hue="Target", data=df)
