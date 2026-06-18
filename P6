@@ -1,0 +1,12 @@
+PROGRAM 6:-
+import numpy as np import matplotlib.pyplot as plt
+Data
+X = np.linspace(0, 10, 50) y = np.sin(X)
+LWR function
+def lwr(x, X, y, tau=0.5): w = np.exp(-(X - x)2 / (2 * tau2)) return np.sum(w * y) / 
+np.sum(w)
+Predictions
+y_pred = [lwr(x, X, y) for x in X]
+Plot
+plt.scatter(X, y, label="Data") plt.plot(X, y_pred, 'r', label="LWR") plt.legend() 
+plt.show()
