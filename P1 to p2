@@ -1,0 +1,42 @@
+PROGRAM 1
+from sklearn.datasets import fetch_california_housing
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Load dataset
+california = fetch_california_housing()
+# Create DataFrame
+df = pd.DataFrame(california.data, columns=california.feature_names)
+df["Target"] = california.target
+# Histograms
+df.hist(bins=30, edgecolor="black", figsize=(20,10))
+plt.show()
+# Boxplots
+plt.figure(figsize=(15,9))
+for i, feature in enumerate(df.columns, 1):
+ plt.subplot(3, 3, i)
+ sns.boxplot(x=df[feature])
+ plt.title(feature)
+plt.tight_layout()
+plt.show()
+
+PROGRAM 2:-
+from sklearn.datasets import fetch_california_housing
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Load dataset
+california = fetch_california_housing()
+# Create DataFrame
+Df=pd.DataFrame(california.data,columns=california.feature_names)
+df["Target"] = california.target
+# Correlation matrix
+correlation = df.corr()
+# Heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation, annot=True, cmap="coolwarm", fmt=".2f")
+plt.title("Correlation Heatmap")
+plt.show()
+# Pairplot
+sns.pairplot(df)
+plt.show()
